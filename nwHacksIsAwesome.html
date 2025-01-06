@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            font-family: Arial, sans-serif;
+        }
+
+        .text {
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff,
+                           0 0 20px #fff,
+                           0 0 30px #00ff00,
+                           0 0 40px #00ff00;
+            }
+            to {
+                text-shadow: 0 0 20px #fff,
+                           0 0 30px #00ff99,
+                           0 0 40px #00ff99,
+                           0 0 50px #00ff99;
+            }
+        }
+
+        .rainbow {
+            background: linear-gradient(to right, 
+                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 8s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="text">
+        <span class="rainbow">nwHacks is awesome!</span>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const text = document.querySelector('.text');
+            const { clientX, clientY } = e;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            const moveX = (clientX - centerX) / 50;
+            const moveY = (clientY - centerY) / 50;
+            
+            text.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    </script>
+</body>
+</html>
